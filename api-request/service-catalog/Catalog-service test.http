@@ -1,0 +1,227 @@
+###=======================================
+### REGISTER ADMIN
+###=======================================
+
+POST http://localhost:4007/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "Create Admin",
+  "email": "CreateAdmin@example.com",
+  "password": "Admin1",
+  "role": "ADMIN"
+}
+
+###
+
+###==========================================
+###=== LOGIN ADMIN============
+###============================================
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "CreateAdmin@example.com",
+  "password": "Admin1"
+}
+
+###
+
+### =========================================================
+### CATEGORY 1 - PLUMBING SERVICES
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2OTc0MTEsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2OTY1MTEsImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.FMGh6jLuZeBNLegSwsmyaJOgjdJlPOiq2PeFhygWlyI
+
+{
+  "name": "Plumbing Services",
+  "description": "Professional services for homes, buildings, and residential properties"
+}
+
+###
+
+### =========================================================
+### CATEGORY 2 - MECHANICAL
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2MzUwNzMsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2MzQxNzMsImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.UihTx5hWKa8H83mobbDU7nggkn4xV5AHAad-_FNnFN8
+
+{
+  "name": "Mechanical",
+  "description": "Professional mechanical service, repair, and related services"
+}
+
+###
+
+### =========================================================
+### CATEGORY 3 - ELECTRICAL
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2ODU5MTksInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2ODUwMTksImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.WfL6gVGsi4zoUBIhNQUO5X_DrIjvpomWg9SlZmCLjd4
+
+{
+  "name": "Electrical",
+  "description": "Professional electrical and electronics services"
+}
+
+###
+
+### =========================================================
+### CATEGORY 3 - TECH
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2ODc2NzUsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2ODY3NzUsImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.D66o5M4A1hkGKe9n1VAN62RG5_P9MCa_PsSPFb4Z6ew
+
+{
+  "name": "TECH",
+  "description": "Software engineers, Web developers, cloud engineers and network engineers"
+}
+
+###
+
+### ===============================================
+### ADD SERVICES TO CATEGORIES
+### ===============================================
+
+### =========================================================
+### PLUMBING
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/services
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2OTc0MTEsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2OTY1MTEsImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.FMGh6jLuZeBNLegSwsmyaJOgjdJlPOiq2PeFhygWlyI
+
+{
+  "name": "Pipe repair and installation",
+  "description": "Professional plumbing installation, maintenance, and repair services",
+  "categoryId": "7bd8c40f-c53b-4622-9925-012372ad6870"
+}
+
+###
+
+### =========================================================
+### ELECTRICAL INSTALLATION
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/services
+Content-Type: application/json
+Authorization: Bearer YOUR_ADMIN_TOKEN
+
+{
+  "name": "Electrical Installation",
+  "description": "Residential and commercial electrical installation and repair services",
+  "categoryId": "a1111111-1111-1111-1111-111111111111"
+}
+
+###
+
+### =========================================================
+### AIR CONDITIONER REPAIR
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/services
+Content-Type: application/json
+Authorization: Bearer YOUR_ADMIN_TOKEN
+
+{
+  "name": "Air Conditioner Repair",
+  "description": "Air conditioner installation, servicing, maintenance, and repair",
+  "categoryId": "a1111111-1111-1111-1111-111111111111"
+}
+###
+
+## =========================================================
+### GENERATOR REPAIR
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/services
+Content-Type: application/json
+Authorization: Bearer YOUR_ADMIN_TOKEN
+
+{
+  "name": "Generator Repair",
+  "description": "generator repair, servicing and maintenance",
+  "categoryId": "a1111111-1111-1111-1111-111111111111"
+}
+
+###
+
+## =========================================================
+### SOFTWARE ENGINEER
+### =========================================================
+
+POST http://localhost:4007/catalog/admin/services
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2ODg0NTUsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2ODc1NTUsImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.-zqZjqa8J_XbE__Ecit-fyq0yjnxBvmHoHqtEn_fhDI
+
+{
+  "name": "Software Engineer",
+  "description": "Software Design, Testing and Development and Deployment",
+  "categoryId": "6f61a278-488f-48e1-a77e-408442568ffc"
+}
+
+###
+
+###+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+### UPDATE CATEGORY ++++++++++++++++++++++++++++++++++++++++++++++
+###+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+###
+
+### =========================================================
+### CATEGORY 1 -UPDATE PLUMBING CATEGORY
+### =========================================================
+
+PUT http://localhost:4007/catalog/admin/categories/244f3632-42da-4f54-a633-46206216e927
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2OTUxMDksInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2OTQyMDksImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.pUNrQ_BgTVTJ1RWujcatQFz8s3_iKS9yP7Z2m6nrfkE
+
+{
+  "name": "Professional Plumbing Services",
+  "description": "Professional plumbing installation, pipe repair, and maintenance services for homes and buildings"
+}
+
+###
+
+### =========================================================
+### CATEGORY 1 -UPDATE PLUMBING SERVICES
+### =========================================================
+
+PUT http://localhost:4007/catalog/admin/services/eeb2c6d6-1d83-4e83-980c-d33295d4a585
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2OTUxMDksInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2OTQyMDksImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.pUNrQ_BgTVTJ1RWujcatQFz8s3_iKS9yP7Z2m6nrfkE
+
+{
+  "name": "Professional Pipe Installation",
+  "description": "Complete residential and commercial pipe installation services",
+  "categoryId": "244f3632-42da-4f54-a633-46206216e927"
+}
+
+###
+
+###+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+### DELETE CATEGORY ++++++++++++++++++++++++++++++++++++++++++++++
+###+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+DELETE http://localhost:4007/catalog/admin/categories/244f3632-42da-4f54-a633-46206216e927
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2OTUxMDksInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2OTQyMDksImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.pUNrQ_BgTVTJ1RWujcatQFz8s3_iKS9yP7Z2m6nrfkE
+
+###
+
+###+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+### DELETE SERVICES ++++++++++++++++++++++++++++++++++++++++++++++
+###+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+DELETE http://localhost:4007/catalog/admin/services/eeb2c6d6-1d83-4e83-980c-d33295d4a585
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwNGM2MWYzMi0xMGY2LTQwZGEtYWFiYi0yNjI1MTVmMDBkMGQiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODc2OTY1MzQsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc2OTU2MzQsImVtYWlsIjoiQ3JlYXRlQWRtaW5AZXhhbXBsZS5jb20ifQ.2_W7iv46csRXzg-d4jWyW1E1rK2idXJHSPxhRWevzd4
+
+###

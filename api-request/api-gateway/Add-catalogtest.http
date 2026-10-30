@@ -1,0 +1,54 @@
+### Create Category
+
+POST http://localhost:4007/catalog/admin/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4YWM2M2Q2ZS02OGQ3LTRhMzEtYWU2Mi00ZjZjM2U3ZGVjN2EiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODU1NDkwNDAsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODU1NDgxNDAsImVtYWlsIjoiTmV3QWRtaW5AZXhhbXBsZS5jb20ifQ.co9taR1UT5rlnvcKEcDyqZBhV9W0ufkceJV22WYelxk
+
+{
+  "name": "Plumbing",
+  "description": "Plumbing engineering and repair services"
+}
+###
+
+GET http://localhost:4007/catalog/categories
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZTQ1ZTQ4OS0zMjZkLTQzZjYtODk4YS00NTI5OWQ4NjE5OWYiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODUxNDgyNzIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODUxNDczNzIsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.ofcJN0nEIu2-yRQLtjW_eXeyPsp7A3fcVaq1pVCYhbw
+
+###
+
+###
+
+GET http://localhost:4007/catalog/categories/784f8ab5-829b-4b8f-af6c-939eeb0e8785
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZTQ1ZTQ4OS0zMjZkLTQzZjYtODk4YS00NTI5OWQ4NjE5OWYiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODUxNDgyNzIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODUxNDczNzIsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.ofcJN0nEIu2-yRQLtjW_eXeyPsp7A3fcVaq1pVCYhbw
+
+###
+
+POST http://localhost:4007/catalog/admin/services
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4YWM2M2Q2ZS02OGQ3LTRhMzEtYWU2Mi00ZjZjM2U3ZGVjN2EiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODU1NDkwNDAsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODU1NDgxNDAsImVtYWlsIjoiTmV3QWRtaW5AZXhhbXBsZS5jb20ifQ.co9taR1UT5rlnvcKEcDyqZBhV9W0ufkceJV22WYelxk
+
+{
+  "name": "Pipe Repair",
+  "description": "Repair and maintenance of pipes and boreholes",
+  "categoryId": "61aefb08-f16b-47fb-9d63-fd86d1a1a7e6"
+}
+
+###
+GET http://localhost:4007/catalog/categories/61aefb08-f16b-47fb-9d63-fd86d1a1a7e6
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4YWM2M2Q2ZS02OGQ3LTRhMzEtYWU2Mi00ZjZjM2U3ZGVjN2EiLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3ODU1NDkwNDAsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODU1NDgxNDAsImVtYWlsIjoiTmV3QWRtaW5AZXhhbXBsZS5jb20ifQ.co9taR1UT5rlnvcKEcDyqZBhV9W0ufkceJV22WYelxk
+
+###
+POST http://localhost:4007/providers
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIyNDY2NzIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIyNDU3NzIsImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ.J89ilhuraJVwgKlN2ZxHouHN3WWt_ENmK9v123dtDgI
+Content-Type: application/json
+
+{
+  "serviceItemId": "588f24fd-1baf-4398-95fc-748d2505197d",
+  "price": 455
+}
+
+###
+GET http://localhost:4007/catalog/categories/588f24fd-1baf-4398-95fc-748d2505197d
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIyNDgzODgsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIyNDc0ODgsImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ.hQ4OpS6do44t2QCD7rCs0LRGtRx-PVsLxQ8V27b5jdM
+
+###
+GET http://localhost:4007/catalog/services/588f24fd-1baf-4398-95fc-748d2505197d

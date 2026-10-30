@@ -1,0 +1,84 @@
+### REGISTER  pROVIDER
+POST http://localhost:4007/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "Rano Plumbing",
+  "email": "Ranoplumbing@example.com",
+  "password": "Ranoplumbing",
+  "role": "PROVIDER"
+}
+
+###
+
+//
+// LOGIN PROVIDER
+//
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "Ranoplumbing@example.com",
+  "password": "Ranoplumbing"
+}
+
+###
+
+//
+// CREATE PROVIDER PROFILE
+//
+
+POST http://localhost:4007/providers/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNmFhYTFlZC1iZjU2LTRhYTYtYmQ3NC03OTQxMWIzZDU3ZWEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODc3ODIzMjYsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc3ODE0MjYsImVtYWlsIjoiUmFub3BsdW1iaW5nQGV4YW1wbGUuY29tIn0.nVN2BMNyjWuBU0vEhedU4uvlmNNltrWZWAHjVh0Lr60
+Content-Type: application/json
+
+{
+  "businessName": "RANO PIPES AND SERVICES",
+  "category": "Plumbing"
+}
+
+###
+
+### Create Provider Service
+POST http://localhost:4007/providers/services
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNmFhYTFlZC1iZjU2LTRhYTYtYmQ3NC03OTQxMWIzZDU3ZWEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODc4MDQ4NTMsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc4MDM5NTMsImVtYWlsIjoiUmFub3BsdW1iaW5nQGV4YW1wbGUuY29tIn0.yQSCBelx567khUU9KWFRej4xsIojZJIvmaM95WilOUg
+Content-Type: application/json
+
+{
+  "serviceItemId": "a8cbd41f-1c6e-4762-b745-9cbe6bdcd99d",
+  "price": 5000
+}
+
+### Check provider search document
+GET http://localhost:9200/providers/_doc/112811f0-3742-4db1-aa15-29df1212a280
+
+### Update Provider Service
+PUT http://localhost:4007/providers/me/services/decb8a2c-04ea-4b94-9219-3f120e435eee
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNmFhYTFlZC1iZjU2LTRhYTYtYmQ3NC03OTQxMWIzZDU3ZWEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODc4MDI3NTEsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc4MDE4NTEsImVtYWlsIjoiUmFub3BsdW1iaW5nQGV4YW1wbGUuY29tIn0.Oi3AmVD38IgmeXxjpQ-Aqfg8oj4n79-uZo5YNi6UWPs
+Content-Type: application/json
+
+{
+  "price": 7500
+}
+
+### Check Provider Search Document
+GET http://localhost:9200/providers/_doc/112811f0-3742-4db1-aa15-29df1212a280
+
+### Toggle Provider Service
+PATCH http://localhost:4007/providers/me/services/decb8a2c-04ea-4b94-9219-3f120e435eee/toggle
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNmFhYTFlZC1iZjU2LTRhYTYtYmQ3NC03OTQxMWIzZDU3ZWEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODc4MDQwMDEsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc4MDMxMDEsImVtYWlsIjoiUmFub3BsdW1iaW5nQGV4YW1wbGUuY29tIn0.blCCSlncxumPZ1axKSKO3XZED7egHoyzSBCpo1wiGCw
+
+### Check Provider Search Document
+GET http://localhost:9200/providers/_doc/112811f0-3742-4db1-aa15-29df1212a280
+
+### Toggle Provider Service Back On
+PATCH http://localhost:4007/providers/me/services/decb8a2c-04ea-4b94-9219-3f120e435eee/toggle
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNmFhYTFlZC1iZjU2LTRhYTYtYmQ3NC03OTQxMWIzZDU3ZWEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODc4MDQwMDEsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc4MDMxMDEsImVtYWlsIjoiUmFub3BsdW1iaW5nQGV4YW1wbGUuY29tIn0.blCCSlncxumPZ1axKSKO3XZED7egHoyzSBCpo1wiGCw
+
+### Delete Provider Service
+DELETE http://localhost:4007/providers/me/services/decb8a2c-04ea-4b94-9219-3f120e435eee
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNmFhYTFlZC1iZjU2LTRhYTYtYmQ3NC03OTQxMWIzZDU3ZWEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODc4MDQwMDEsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODc4MDMxMDEsImVtYWlsIjoiUmFub3BsdW1iaW5nQGV4YW1wbGUuY29tIn0.blCCSlncxumPZ1axKSKO3XZED7egHoyzSBCpo1wiGCw
+
+### Verify Provider Search Document
+GET http://localhost:9200/providers/_doc/112811f0-3742-4db1-aa15-29df1212a280

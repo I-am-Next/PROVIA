@@ -1,0 +1,14 @@
+GET http://localhost:4007/api/bookings
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5MWJhYjk5YS0zZmJhLTQ1ZWMtOGQ3ZS04MDdhMzhkYmExNDciLCJyb2xlIjoiQ0xJRU5UIiwiZXhwIjoxNzc1Mjc5MDA4LCJpYXQiOjE3NzUyNzgxMDgsImVtYWlsIjoiVGVzdFNjaXB0QGV4YW1wbGUuY29tIn0.3bHlJ1Brlh11WgdSqaBMlNP1MJ0Yci1zZq5-ZaH4YxU
+Content-Type: application/json
+
+{
+  "providerId": "476a7355-b2e8-4710-a0d9-2681379a1501",
+  "serviceName": "Haircut",
+  "description": "Men haircut",
+  "scheduledStart": "2026-12-16T10:00:00",
+  "scheduledEnd": "2026-12-16T11:00:00",
+  "location": "Lagos",
+  "notes": "Call on arrival"
+
+}

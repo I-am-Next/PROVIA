@@ -1,0 +1,345 @@
+// =====================================================================
+// REGISTER PROVIDER
+// =====================================================================
+
+POST http://localhost:4007/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "Provider Test",
+  "email": "ProviderTest@example.com",
+  "password": "Passwordtest",
+  "role": "PROVIDER"
+}
+
+###
+
+//
+// REGISTER CUSTOMER
+//
+
+POST http://localhost:4007/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "New User",
+  "email": "NewUser@example.com",
+  "password": "Password51CCC",
+  "role": "USER"
+}
+
+###
+
+###
+
+//
+// REGISTER Admin
+//
+
+POST http://localhost:4007/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "New Admin",
+  "email": "NewAdmin@example.com",
+  "password": "Admin51CCC",
+  "role": "ADMIN"
+}
+
+###
+
+###
+
+//
+// REGISTER NEW CUSTOMER
+//
+
+POST http://localhost:4007/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "New book User",
+  "email": "NewBookingUser@example.com",
+  "password": "Password51CC",
+  "role": "USER"
+}
+
+
+###
+
+//
+// LOGIN ADMIN
+//
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "NewAdmin@example.com",
+  "password": "Admin51CCC"
+}
+
+###
+
+###
+
+//
+// LOGIN CUSTOMER
+//
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "NewUser@example.com",
+  "password": "Password51CCC"
+}
+
+###
+
+###
+
+//
+// LOGIN NEW CUSTOMER
+//
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "NewBookingUser@example.com",
+  "password": "Password51CC"
+}
+
+###
+
+//
+// LOGIN PROVIDER
+//
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "ProviderTest@example.com",
+  "password": "Passwordtest"
+}
+
+###
+
+### Login
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "NewProvider@example.com",
+  "password": "Password51CCC"
+}
+
+###
+
+//
+// CREATE PROVIDER PROFILE
+//
+
+POST http://localhost:4007/providers/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODU1NDY0MTAsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODU1NDU1MTAsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.lBYqxTOFlj-SCK_SdDV-txsfGWumiLExX8GJZYDFiXY
+Content-Type: application/json
+
+{
+  "businessName": "New Provider Electrical Services",
+  "category": "Electrical"
+}
+
+###
+
+//
+// CREATE PROVIDER SERVICE
+//
+
+POST http://localhost:4007/providers/services
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NjY1NzY4OSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NjY1Njc4OSwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.r-fjvfG3pdpgSaBqUM26dq3xLmNf84w2Isx1nePGMIM
+Content-Type: application/json
+
+{
+  "serviceItemId": "7d2073be-cf8a-43a0-ab14-d06c5a07365f",
+  "price": 3000
+}
+
+###
+
+//
+// CUSTOMER CREATES BOOKING
+//
+
+POST http://localhost:4007/api/v1/bookings
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzEwMjI1OCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzEwMTM1OCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.c19_XHrHW5ycodJZA-ZOXawBKMR4AMb7t8wEj6oSdbY
+Content-Type: application/json
+
+{
+  "providerServiceId": "8bd07689-12f8-4ba5-8088-c6614ba81692",
+  "description": "Plumbing Problem",
+  "notes": "Please come with replacement washers if needed.",
+  "scheduledStart": "2026-08-24T10:00:00",
+  "scheduledEnd": "2026-08-25T12:00:00",
+  "address": {
+    "addressLine1": "12 New Way",
+    "addressLine2": "Apartment 3B",
+    "city": "Lekki",
+    "state": "Lagos",
+    "postalCode": "105102",
+    "country": "Nigeria"
+  }
+}
+
+###
+
+//
+// PROVIDER LIST AVAILABLE BOOKINGS
+//
+
+GET http://localhost:4007/api/v1/bookings/provider/available
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZTQ1ZTQ4OS0zMjZkLTQzZjYtODk4YS00NTI5OWQ4NjE5OWYiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODUxNDM0NjUsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODUxNDI1NjUsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.LeUc925GyJlvRKCbo4iE8sg0IJshJ2335eB5RRLZLjU
+
+###
+
+//
+// PROVIDER ACCEPTS BOOKING
+//
+
+POST http://localhost:4007/api/v1/bookings/provider/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/accept
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODcxMDI2MzMsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODcxMDE3MzMsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.-ORfm1-4MS-VtRxKoUux2BNLeW4WRMByqeeYuA45wRA
+
+###
+
+//
+// PROVIDER CREATES QUOTE
+//
+
+POST http://localhost:4007/api/v1/bookings/provider/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/quote
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODcxMDI2MzMsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODcxMDE3MzMsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.-ORfm1-4MS-VtRxKoUux2BNLeW4WRMByqeeYuA45wRA
+Content-Type: application/json
+
+{
+  "labourAmount": 3000.00,
+  "materialsAmount": 1500.00,
+  "description": "Plumbing repair including replacement washers and replacement of faulty wiring.",
+  "estimatedDurationDays": 1
+}
+
+###
+
+//
+// CUSTOMER GETS QUOTE
+//
+
+GET http://localhost:4007/api/v1/bookings/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/quote
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzEwMjI1OCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzEwMTM1OCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.c19_XHrHW5ycodJZA-ZOXawBKMR4AMb7t8wEj6oSdbY
+
+###
+
+//
+// CUSTOMER ACCEPTS QUOTE
+//
+
+POST http://localhost:4007/api/v1/bookings/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/quote/accept
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzEwMjI1OCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzEwMTM1OCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.c19_XHrHW5ycodJZA-ZOXawBKMR4AMb7t8wEj6oSdbY
+
+###
+
+//
+// INITIALIZE PAYMENT
+//
+
+POST http://localhost:4007/api/v1/payments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzEwMjI1OCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzEwMTM1OCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.c19_XHrHW5ycodJZA-ZOXawBKMR4AMb7t8wEj6oSdbY
+Content-Type: application/json
+
+{
+  "bookingId": "cf703ed1-ccb1-4fae-8ce8-09089b71fe79",
+  "customerEmail": "NewBookingUser@example.com"
+}
+
+###
+# PROVIDER REQUESTS MATERIAL RELEASE
+#
+
+POST http://localhost:4007/api/v1/bookings/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/request-material-release
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODcxMDI2MzMsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODcxMDE3MzMsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.-ORfm1-4MS-VtRxKoUux2BNLeW4WRMByqeeYuA45wRA
+###
+
+###
+# PROVIDER CHECKS WALLET
+#
+
+GET http://localhost:4007/api/v1/wallet
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODY5NTYzMDgsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODY5NTU0MDgsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.M1xcYQaVg281ucXJchgIbF_sK3cA09eRTOIo7fCsDaw
+
+###
+
+###
+# PROVIDER CHECKS WALLET TRANSACTIONS
+#
+
+GET http://localhost:4007/api/v1/wallet/transactions
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODY2NTc4NTcsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODY2NTY5NTcsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.8hrE468AB4R-KSJzOCv7gWQ1-cW4_GdwoYD6iHBzY2w
+
+###
+
+###
+# PROVIDER STARTS JOB
+#
+
+POST http://localhost:4007/api/v1/bookings/provider/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/start
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODcxMDI2MzMsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODcxMDE3MzMsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.-ORfm1-4MS-VtRxKoUux2BNLeW4WRMByqeeYuA45wRA
+
+###
+
+###
+# PROVIDER COMPLETES JOB
+#
+
+POST http://localhost:4007/api/v1/bookings/provider/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/complete
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODcxMDI2MzMsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODcxMDE3MzMsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.-ORfm1-4MS-VtRxKoUux2BNLeW4WRMByqeeYuA45wRA
+
+###
+
+###
+# CUSTOMER CONFIRMS COMPLETION
+#
+
+POST http://localhost:4007/api/v1/bookings/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/confirm-completion
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzEwMzA2OCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzEwMjE2OCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.eYkL6gUdPFEc7oIyZJ1ljJ3al8zbqwNk-GdcWFZKp04
+
+###
+
+###
+# PROVIDER CHECKS WALLET AGAIN
+#
+
+GET http://localhost:4007/api/v1/wallet
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODY2NTg0MjYsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODY2NTc1MjYsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.MNkrYUKHi98KcyYpjlAc3XvbOv_wZ8qTLY0MJJmV3WE
+
+###
+
+###
+# PROVIDER REQUESTS WITHDRAWAL
+#
+
+POST http://localhost:4007/api/v1/withdrawals
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODY2NjE2OTUsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODY2NjA3OTUsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.1ceoOGOzV-y6R6LVovhKl39BkNrPpxHCITr1D43yhlQ
+Content-Type: application/json
+
+{
+  "amount": 3000
+}
+
+###
+
+###
+# COMPLETE WITHDRAWAL (Internal/Test)
+#
+
+POST http://localhost:4007/api/internal/withdrawals/70fbde5f-f234-4b32-935f-e96f7a45a055/complete
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODQ0MjQ1MDcsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODQ0MjM2MDcsImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ.nj79NH_D6AIOP3_ALvJWFwJj3VVGx7ae0iFW601Wuz0
+###

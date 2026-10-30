@@ -1,0 +1,63 @@
+spring:
+
+  datasource:
+    url: ${SEARCH_DB_URL}
+    username: ${SEARCH_DB_USERNAME}
+    password: ${SEARCH_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
+    clean-disabled: true
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+    consumer:
+      group-id: ${SEARCH_KAFKA_GROUP_ID:search-group}
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+
+      key-deserializer:
+        org.apache.kafka.common.serialization.StringDeserializer
+
+      value-deserializer:
+        org.apache.kafka.common.serialization.StringDeserializer
+
+    producer:
+      key-serializer:
+        org.apache.kafka.common.serialization.StringSerializer
+
+      value-serializer:
+        org.apache.kafka.common.serialization.StringSerializer
+
+    listener:
+      ack-mode: record
+
+  elasticsearch:
+    uris: ${ELASTICSEARCH_URI:http://localhost:9200}
+
+
+search:
+
+  kafka:
+    provider-events-topic: provider-events
+    provider-service-events-topic: provider-service-events
+    catalog-category-events-topic: catalog-category-events
+    catalog-service-item-events-topic: catalog-service-item-events
+    rating-events-topic: rating-events
+
+  inbox:
+    replay-delay: 10000
+
+
+server:
+  port: 5000

@@ -1,0 +1,128 @@
+### =========================================================
+### CONFIGURATION
+### =========================================================
+
+@baseUrl = http://localhost:4007
+@mediaUrl = http://localhost:4011
+
+@profilePhotoPath = C:/Users/USER/IdeaProjects/handy-app/media-storage/test-files/profile-photo.jpg
+@documentPath = C:/Users/USER/IdeaProjects/handy-app/media-storage/test-files/test-document.pdf
+
+@multipartBoundary = WebAppBoundary
+
+# These IDs/tokens are populated after running the relevant requests.
+@accessToken = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODg4OTYzNzEsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODg4OTU0NzEsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.thMlynlvTVOCTZG1u43MFWtdQgpi9zvBuBUYpf9wqbI
+@secondUserAccessToken = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4ODQ1OTM2NywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4ODQ1ODQ2NywiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.sBjsKzwPRbFTu4yG-X0o9fUd4lnGxUIYbiHaEQVYNu8
+
+@profileMediaId = 0d9ef7a8-df57-47f4-941e-1b26a22ddf47
+@documentMediaId = 00953491-d8a0-451c-b24d-1021e2bddad2
+
+
+### =========================================================
+### AUTHENTICATION
+### LOGIN PROVIDER
+### =========================================================
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "ProviderTest@example.com",
+  "password": "Passwordtest"
+}
+
+
+### =========================================================
+### PROFILE PHOTO
+### UPLOAD PROFILE PHOTO
+### =========================================================
+
+POST {{baseUrl}}/api/v1/media/profile-photo
+Authorization: Bearer {{accessToken}}
+Content-Type: multipart/form-data; boundary={{multipartBoundary}}
+
+--{{multipartBoundary}}
+Content-Disposition: form-data; name="file"; filename="profile-photo.jpg"
+Content-Type: image/jpeg
+
+< C:/Users/USER/IdeaProjects/handy-app/media-storage/test-files/profile-photo.jpg
+--{{multipartBoundary}}--
+
+
+### =========================================================
+### PROFILE PHOTO
+### GET MEDIA METADATA
+### =========================================================
+
+GET {{baseUrl}}/api/v1/media/{{profileMediaId}}
+Authorization: Bearer {{accessToken}}
+
+
+### =========================================================
+### PROFILE PHOTO
+### GET MEDIA CONTENT
+### =========================================================
+
+GET {{mediaUrl}}/api/v1/media/{{profileMediaId}}/content
+Authorization: Bearer {{accessToken}}
+
+
+### =========================================================
+### DOCUMENT
+### UPLOAD DOCUMENT
+### =========================================================
+
+POST {{baseUrl}}/api/v1/media/document
+Authorization: Bearer {{accessToken}}
+Content-Type: multipart/form-data; boundary={{multipartBoundary}}
+
+--{{multipartBoundary}}
+Content-Disposition: form-data; name="file"; filename="test-document.pdf"
+Content-Type: application/pdf
+
+< C:/Users/USER/IdeaProjects/handy-app/media-storage/test-files/test-document.pdf
+--{{multipartBoundary}}--
+
+
+### =========================================================
+### DOCUMENT
+### GET MEDIA METADATA
+### =========================================================
+
+GET {{baseUrl}}/api/v1/media/{{documentMediaId}}
+Authorization: Bearer {{accessToken}}
+
+
+### =========================================================
+### DOCUMENT
+### GET MEDIA CONTENT
+### =========================================================
+
+GET {{baseUrl}}/api/v1/media/{{documentMediaId}}/content
+Authorization: Bearer {{accessToken}}
+
+
+### =========================================================
+### SECURITY
+### ATTEMPT TO ACCESS SOMEONE ELSE'S PRIVATE MEDIA
+### =========================================================
+
+GET {{baseUrl}}/api/v1/media/{{documentMediaId}}/content
+Authorization: Bearer {{secondUserAccessToken}}
+
+
+### =========================================================
+### PUBLIC MEDIA
+### SECOND USER ACCESSING PUBLIC PROFILE PHOTO
+### =========================================================
+
+GET {{baseUrl}}/api/v1/media/{{profileMediaId}}/content
+Authorization: Bearer {{secondUserAccessToken}}
+
+
+### =========================================================
+### DELETE MEDIA
+### =========================================================
+
+DELETE {{baseUrl}}/api/v1/media/{{profileMediaId}}
+Authorization: Bearer {{accessToken}}

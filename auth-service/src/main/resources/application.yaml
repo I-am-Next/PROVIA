@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: auth-service
+
+  datasource:
+    url: ${AUTH_DB_URL:jdbc:postgresql://localhost:5433/auth_db}
+    username: ${AUTH_DB_USERNAME}
+    password: ${AUTH_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: false
+    baseline-version: 1
+    locations: classpath:db/migration
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+jwt:
+  secret: ${JWT_SECRET}
+
+server:
+  port: 4002
+
+logging:
+  level:
+    root: INFO
+    com.pm.authservice: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG

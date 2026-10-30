@@ -1,0 +1,148 @@
+### Register
+POST http://localhost:4007/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "New Provider",
+  "email": "NewProvider@example.com",
+  "password": "Password51CCC",
+  "role": "PROVIDER"
+}
+
+###
+
+### Register
+POST http://localhost:4007/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "New User",
+  "email": "NewUser@example.com",
+  "password": "Password51CCC",
+  "role": "USER"
+}
+
+###
+
+### Login
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "NewUser@example.com",
+  "password": "Password51CCC"
+}
+
+###
+
+### Login
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "NewProvider@example.com",
+  "password": "Password51CCC"
+}
+
+###
+
+POST http://localhost:4007/providers/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIxODIwMjcsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIxODExMjcsImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ.8xfA3Gw7zpmUYDd7gozXq7lzbTsc1851DraMP2798pM
+Content-Type: application/json
+
+{
+  "businessName": "New Provider Electrical Services",
+  "category": "Electrical"
+}
+
+###
+//GET THE PROVIDER YOU JUST CREATED
+
+GET http://localhost:4007/providers/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZTQ1ZTQ4OS0zMjZkLTQzZjYtODk4YS00NTI5OWQ4NjE5OWYiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODUxNTAzMjIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODUxNDk0MjIsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0._ctQMIlRF6l74zTJN3hLsGQYzHaDT1V1UbGCZ0S_aco
+
+###
+GET http://localhost:4007/providers/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZTQ1ZTQ4OS0zMjZkLTQzZjYtODk4YS00NTI5OWQ4NjE5OWYiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODUxNTI3NDIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODUxNTE4NDIsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.mqIXOnIUvF2fwF5_omM5ZQV23NvnK1thechVtBidC74
+
+###
+
+GET http://localhost:4007/providers/{id}/services
+
+###
+
+
+//CREATE A SERVICE
+POST http://localhost:4007/providers/services
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIyNTQxMjgsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIyNTMyMjgsImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ.lsQZqi3eMdtjm4MX6guYe6OBJzv_mddrsxT8NqClzOo
+Content-Type: application/json
+
+{
+  "serviceItemId": "588f24fd-1baf-4398-95fc-748d2505197d",
+  "price": 455
+}
+
+###
+//PROVIDER SERVICE DETAILS
+GET /providers/services/{uuid}
+
+###
+
+###
+
+POST  http://localhost:4007/bookings
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlY2VjMmRlNy1mNDg4LTQ0MjgtYjA5NS1mNjlhZjRjNWYxYjIiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4MjI2MzE5NywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4MjI2MjI5NywiZW1haWwiOiJOZXdVc2VyQGV4YW1wbGUuY29tIn0.4xKaW_HQpwiGLry6_6EeKcnfbxbaD4IeDCLsP21IG8I
+Content-Type: application/json
+
+{
+  "providerServiceId": "277942bd-5961-4931-a1d4-f3eaf93b380f",
+  "description": "Electrical repair",
+  "notes": "Please come with replacement washers if needed.",
+  "scheduledStart": "2026-07-01T10:00:00",
+  "scheduledEnd": "2026-07-01T12:00:00",
+  "address": {
+    "addressLine1": "12 Admiralty Way",
+    "addressLine2": "Apartment 3B",
+    "city": "Lekki",
+    "state": "Lagos",
+    "postalCode": "105102",
+    "country": "Nigeria"
+  }
+}
+
+###
+
+GET http://localhost:4007/bookings/{{bookingId}}
+Authorization: Bearer {{userToken}}
+
+###
+
+### 4. Provider - List Available Jobs
+### =====================================================================
+
+GET http://localhost:4007/bookings/providers/me/jobs/available?page=0&size=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIxODIwMjcsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIxODExMjcsImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ.8xfA3Gw7zpmUYDd7gozXq7lzbTsc1851DraMP2798pM
+
+###
+GET http://localhost:4004/providers/services/277942bd-5961-4931-a1d4-f3eaf93b380f
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlY2VjMmRlNy1mNDg4LTQ0MjgtYjA5NS1mNjlhZjRjNWYxYjIiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4MjI1OTI4NywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4MjI1ODM4NywiZW1haWwiOiJOZXdVc2VyQGV4YW1wbGUuY29tIn0.tD9_8eqLF8NolctQVmsIfwl5uJnEJPHJeL_X_2Dov10
+
+###
+GET http://localhost:4004/providers/services/277942bd-5961-4931-a1d4-f3eaf93b380f
+
+###
+//Accept Job
+POST http://localhost:4007/bookings/provider/13d147e2-9ac1-4b96-8b0d-b15b424c52d1/accept
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIyNjc0NzksInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIyNjY1NzksImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ._X_G68R-_vGvKyc_pQhnq6GmbgWOrrGAjw2alMu9LaQ
+
+###
+GET http://localhost:4007/bookings/provider/available
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIyNjc0NzksInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIyNjY1NzksImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ._X_G68R-_vGvKyc_pQhnq6GmbgWOrrGAjw2alMu9LaQ
+
+###
+POST http://localhost:4007/bookings/provider/13d147e2-9ac1-4b96-8b0d-b15b424c52d1/start
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIyNjc0NzksInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIyNjY1NzksImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ._X_G68R-_vGvKyc_pQhnq6GmbgWOrrGAjw2alMu9LaQ
+
+###
+POST http://localhost:4007/bookings/provider/13d147e2-9ac1-4b96-8b0d-b15b424c52d1/complete
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNDk4NWUyMS1kN2JjLTRiODMtODU3Ni04ZGUxODdjNjVkZDEiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODIyNjc0NzksInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODIyNjY1NzksImVtYWlsIjoiTmV3UHJvdmlkZXJAZXhhbXBsZS5jb20ifQ._X_G68R-_vGvKyc_pQhnq6GmbgWOrrGAjw2alMu9LaQ

@@ -1,0 +1,44 @@
+
+spring:
+  application:
+    name: provider-service
+
+  datasource:
+    url: ${PROVIDER_DB_URL:jdbc:postgresql://localhost:5437/provider_db}
+    username: ${PROVIDER_DB_USERNAME:provider_user}
+    password: ${PROVIDER_DB_PASSWORD:provider_pass}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
+    baseline-on-migrate: false
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+  sql:
+    init:
+      mode: never
+
+server:
+  port: 4004
+
+jwt:
+  secret: ${JWT_SECRET}
+
+services:
+  catalog:
+    url: ${CATALOG_SERVICE_URL:http://localhost:5006}
+
+  rating:
+    url: ${RATING_SERVICE_URL:http://localhost:4006}

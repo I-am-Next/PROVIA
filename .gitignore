@@ -1,0 +1,29 @@
+﻿# Secrets and environment-specific configuration
+.env
+.env.*
+!.env.example
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Maven build output
+**/target/
+
+# Logs
+*.log
+logs/
+
+# Database backups
+*.dump
+*.backup
+*_backup.sql
+*_before_reset.sql
+provider-db-backup.sql
+
+# Source-code ZIP archives
+*.zip
+
+# Uploaded files and local runtime data
+/uploads/
+/uploads/**

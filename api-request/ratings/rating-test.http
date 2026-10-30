@@ -1,0 +1,113 @@
+// LOGIN NEW CUSTOMER
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "NewBookingUser@example.com",
+  "password": "Password51CC"
+}
+
+###
+
+//
+// LOGIN PROVIDER
+//
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "ProviderTest@example.com",
+  "password": "Passwordtest"
+}
+
+###
+
+
+### ========================================================
+### RATING SERVICE
+### =========================================================
+
+@baseUrl = http://localhost:4007/api/v1/ratings
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4Njk1NjkyNCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4Njk1NjAyNCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.cooygrYjjg07jX2hFuk1rdtKpWHWMZNypsnmGu5OaWE
+
+
+### =========================================================
+### 1. CREATE RATING
+### Customer rates provider after booking completion
+### =========================================================
+
+POST http://localhost:4007/api/v1/ratings
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzExODY0MCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzExNzc0MCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.-a2ykXkuuNemjOBYaJXtqtLrIERc8gEJXUtRTYcglgk
+Content-Type: application/json
+
+{
+  "bookingId": "cf703ed1-ccb1-4fae-8ce8-09089b71fe79",
+  "score": 5,
+  "comment": "Excellent service. The provider was professional and completed the job very well."
+}
+
+###
+GET http://localhost:4001/bookings/cf703ed1-ccb1-4fae-8ce8-09089b71fe79/rating-context
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzEwNjc0MiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzEwNTg0MiwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.ojAeSk_jBhGb0474pw1D39ux_scq5UPxmqO586XVdJ4
+
+### =========================================================
+### 2. GET RATING
+### =========================================================
+
+GET http://localhost:4007/api/v1/ratings/59c4f46b-87c9-4d12-8d41-25e709986587
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzEwNzc4OSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzEwNjg4OSwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.1th8Xp55iFBujlusemOCFCAqf5x85FZ37SZOUJ-LcFM
+
+###
+## Get my rating for a booking
+GET http://localhost:4007/api/v1/ratings/bookings/cf703ed1-ccb1-4fae-8ce8-09089b71fe79
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzI3MDExNiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzI2OTIxNiwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.Y4IAgBkR70XY9C-kxWR-mOAeT-5c1Jssgt5Ni_p_WzA
+
+### =========================================================
+### 3. UPDATE RATING
+### =========================================================
+
+PUT http://localhost:4007/api/v1/ratings/59c4f46b-87c9-4d12-8d41-25e709986587
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzExMDU3MSwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzEwOTY3MSwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.3su9kqEHY9Cty-vYK7vRM2GT7ChqwSpCxglYsPOPrLE
+Content-Type: application/json
+
+{
+  "score": 4,
+  "comment": "Updated review. Very good service."
+}
+
+
+### =========================================================
+### 4. DELETE RATING
+### =========================================================
+
+DELETE http://localhost:4007/api/v1/ratings/b35b8ac7-84d9-4151-ae5e-a4816410bec5
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzExODY0MCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzExNzc0MCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.-a2ykXkuuNemjOBYaJXtqtLrIERc8gEJXUtRTYcglgk
+
+###
+
+DELETE http://localhost:4006/api/v1/ratings/59c4f46b-87c9-4d12-8d41-25e709986587
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzExNDgwNywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzExMzkwNywiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.uvapsnKbVMk1X-ly22bI56IClYJA12gB_po79CuhMWA
+
+### =========================================================
+### 5. GET PROVIDER RATING SUMMARY
+### =========================================================
+
+GET http://localhost:4007/api/v1/ratings/providers/5c456761-2728-4b32-a2b4-2141e6d270e5/summary
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzExMzQwMCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzExMjUwMCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.0rdkJM0Q015YX3nSShdD_6LDvIm0QNYFCUGfDriL6ek
+
+
+### =========================================================
+### 6. GET PROVIDER REVIEWS
+### =========================================================
+
+GET http://localhost:4007/api/v1/ratings/providers/5c456761-2728-4b32-a2b4-2141e6d270e5/reviews
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzExMzQwMCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzExMjUwMCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.0rdkJM0Q015YX3nSShdD_6LDvIm0QNYFCUGfDriL6ek
+
+
+### =========================================================
+### 7. GET PROVIDER REVIEWS - PAGINATED
+### =========================================================
+
+GET http://localhost:4007/api/v1/ratings/providers/5c456761-2728-4b32-a2b4-2141e6d270e5/reviews?page=0&size=20
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NzExMzQwMCwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NzExMjUwMCwiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.0rdkJM0Q015YX3nSShdD_6LDvIm0QNYFCUGfDriL6ek

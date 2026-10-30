@@ -1,0 +1,72 @@
+// LOGIN NEW CUSTOMER
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "NewBookingUser@example.com",
+  "password": "Password51CC"
+}
+
+###
+
+//
+// LOGIN PROVIDER
+//
+
+POST http://localhost:4007/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "ProviderTest@example.com",
+  "password": "Passwordtest"
+}
+
+###
+
+###
+
+//Get all notifications***
+GET http://localhost:4007/api/v1/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODY2NzA4OTAsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODY2Njk5OTAsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.WhpFMXW4H8JIVkF2Sx_34D8GVMfTgbjWCMmaNTaIUiU
+
+###
+//Get unread notifications
+GET http://localhost:4007/api/v1/notifications/unread
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NjY2OTIzNywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NjY2ODMzNywiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.DGi1DL-FrJLii474oa717Z5kR8X1BL3H-xRB3gjNAgU
+
+###
+//Get unread count
+GET http://localhost:4007/api/v1/notifications/count
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODY2OTUxMTgsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODY2OTQyMTgsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.AmZoHavMYXEB_1PIM0-uC3GKVI6uo58zzB_Gj1WTPsM
+
+###
+//Get read notifications
+GET http://localhost:4007/api/v1/notifications/read
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NjY2OTIzNywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NjY2ODMzNywiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.DGi1DL-FrJLii474oa717Z5kR8X1BL3H-xRB3gjNAgU
+
+###
+//Mark one notification as read
+PATCH http://localhost:4007/api/v1/notifications/69575d8e-9733-4170-9874-3694d4f947a3/read
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NjY3MDI0NywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NjY2OTM0NywiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.J7oJ8_RkCsREMC5iieYyp7J0UtaLKoMnDHGdJfzmHk0
+
+###
+
+/****Recheck****/
+###
+GET http://localhost:4007/api/v1/notifications/unread
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NjY3MDI0NywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NjY2OTM0NywiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.J7oJ8_RkCsREMC5iieYyp7J0UtaLKoMnDHGdJfzmHk0
+
+###
+
+GET http://localhost:4007/api/v1/notifications/read
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNDU0Mzc3My1hMDcxLTRmZWEtODQ2ZC05YzNkNjI5OTQzOWUiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTc4NjY3MDI0NywidHlwZSI6ImFjY2VzcyIsImlhdCI6MTc4NjY2OTM0NywiZW1haWwiOiJOZXdCb29raW5nVXNlckBleGFtcGxlLmNvbSJ9.J7oJ8_RkCsREMC5iieYyp7J0UtaLKoMnDHGdJfzmHk0
+
+###
+//read-all
+PATCH http://localhost:4007/api/v1/notifications/read-all
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODY2NzA4OTAsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODY2Njk5OTAsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.WhpFMXW4H8JIVkF2Sx_34D8GVMfTgbjWCMmaNTaIUiU
+
+###
+//count
+GET http://localhost:4007/api/v1/notifications/count
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzQ1Njc2MS0yNzI4LTRiMzItYTJiNC0yMTQxZTZkMjcwZTUiLCJyb2xlIjoiUFJPVklERVIiLCJleHAiOjE3ODY2NzA4OTAsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3ODY2Njk5OTAsImVtYWlsIjoiUHJvdmlkZXJUZXN0QGV4YW1wbGUuY29tIn0.WhpFMXW4H8JIVkF2Sx_34D8GVMfTgbjWCMmaNTaIUiU

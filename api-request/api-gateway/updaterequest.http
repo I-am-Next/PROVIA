@@ -1,0 +1,10 @@
+PATCH http://localhost:4007/api/bookings/e45b8c65-63ff-4863-b318-5ec15db04c92/status
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4ZDIyZWJhOC1lMzU3LTQ5YzYtYWRlNy0yY2IxYjNhZmJiZDYiLCJyb2xlIjoiQ0xJRU5UIiwiZXhwIjoxNzc1MjgwNDgxLCJpYXQiOjE3NzUyNzk1ODEsImVtYWlsIjoiQk95U2NpcHRAZXhhbXBsZS5jb20ifQ.I17PAPKWLMVrsvv6Y-iCwp3SfMOXRMXU20bPb26nzpw
+Content-Type: application/json
+
+{
+  "status": "ACCEPTED",
+  "providerNotes": "Will arrive 10 mins early"
+}
+
+###

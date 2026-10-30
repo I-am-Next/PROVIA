@@ -1,0 +1,308 @@
+services:
+  # ------------------------------------------
+  # AUTH DATABASE
+  # ------------------------------------------
+  auth-db:
+    image: postgres:16
+    container_name: auth-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${AUTH_DB_NAME:-auth_db}
+      POSTGRES_USER: ${AUTH_DB_USERNAME:-auth_user}
+      POSTGRES_PASSWORD: ${AUTH_DB_PASSWORD:?AUTH_DB_PASSWORD must be set}
+    ports:
+      - "5433:5432"
+    volumes:
+      - auth-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # BOOKING DATABASE
+  # ------------------------------------------
+  booking-db:
+    image: postgres:16
+    container_name: booking-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${BOOKING_DB_NAME:-booking_db}
+      POSTGRES_USER: ${BOOKING_DB_USERNAME:-booking_user}
+      POSTGRES_PASSWORD: ${BOOKING_DB_PASSWORD:?BOOKING_DB_PASSWORD must be set}
+    ports:
+      - "5435:5432"
+    volumes:
+      - booking-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # USER DATABASE
+  # ------------------------------------------
+  user-db:
+    image: postgres:16
+    container_name: user-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${USER_DB_NAME:-user_db}
+      POSTGRES_USER: ${USER_DB_USERNAME:-user_user}
+      POSTGRES_PASSWORD: ${USER_DB_PASSWORD:?USER_DB_PASSWORD must be set}
+    ports:
+      - "5436:5432"
+    volumes:
+      - user-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # PROVIDER DATABASE
+  # ------------------------------------------
+  provider-db:
+    image: postgres:16
+    container_name: provider-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${PROVIDER_DB_NAME:-provider_db}
+      POSTGRES_USER: ${PROVIDER_DB_USERNAME:-provider_user}
+      POSTGRES_PASSWORD: ${PROVIDER_DB_PASSWORD:?PROVIDER_DB_PASSWORD must be set}
+    ports:
+      - "5437:5432"
+    volumes:
+      - provider-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # CATALOG DATABASE
+  # ------------------------------------------
+  catalog-db:
+    image: postgres:16
+    container_name: catalog-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${CATALOG_DB_NAME:-catalog_db}
+      POSTGRES_USER: ${CATALOG_DB_USERNAME:-catalog_user}
+      POSTGRES_PASSWORD: ${CATALOG_DB_PASSWORD:?CATALOG_DB_PASSWORD must be set}
+    ports:
+      - "5438:5432"
+    volumes:
+      - catalog-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # SEARCH DATABASE
+  # ------------------------------------------
+  search-db:
+    image: postgres:16
+    container_name: search-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${SEARCH_DB_NAME:-search_db}
+      POSTGRES_USER: ${SEARCH_DB_USERNAME:-search_user}
+      POSTGRES_PASSWORD: ${SEARCH_DB_PASSWORD:?SEARCH_DB_PASSWORD must be set}
+    ports:
+      - "5434:5432"
+    volumes:
+      - search-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # PAYMENT DATABASE
+  # ------------------------------------------
+  payment-db:
+    image: postgres:16
+    container_name: payment-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${PAYMENT_DB_NAME:-payment_db}
+      POSTGRES_USER: ${PAYMENT_DB_USERNAME:-payment_user}
+      POSTGRES_PASSWORD: ${PAYMENT_DB_PASSWORD:?PAYMENT_DB_PASSWORD must be set}
+    ports:
+      - "5439:5432"
+    volumes:
+      - payment-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # NOTIFICATION DATABASE
+  # ------------------------------------------
+  notification-db:
+    image: postgres:16
+    container_name: notification-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${NOTIFICATION_DB_NAME:-notification_db}
+      POSTGRES_USER: ${NOTIFICATION_DB_USERNAME:-notification_user}
+      POSTGRES_PASSWORD: ${NOTIFICATION_DB_PASSWORD:?NOTIFICATION_DB_PASSWORD must be set}
+    ports:
+      - "5440:5432"
+    volumes:
+      - notification-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # RATING DATABASE
+  # ------------------------------------------
+  rating-db:
+    image: postgres:16
+    container_name: rating-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${RATING_DB_NAME:-rating_db}
+      POSTGRES_USER: ${RATING_DB_USERNAME:-rating_user}
+      POSTGRES_PASSWORD: ${RATING_DB_PASSWORD:?RATING_DB_PASSWORD must be set}
+    ports:
+      - "5441:5432"
+    volumes:
+      - rating-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # MEDIA DATABASE
+  # ------------------------------------------
+  media-db:
+    image: postgres:16
+    container_name: media-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${MEDIA_DB_NAME:-media_db}
+      POSTGRES_USER: ${MEDIA_DB_USERNAME:-media_user}
+      POSTGRES_PASSWORD: ${MEDIA_DB_PASSWORD:?MEDIA_DB_PASSWORD must be set}
+    ports:
+      - "5443:5432"
+    volumes:
+      - media-db-data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # REDIS
+  # ------------------------------------------
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # MINIO OBJECT STORAGE
+  # ------------------------------------------
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?MINIO_ROOT_PASSWORD must be set}
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # ZOOKEEPER
+  # ------------------------------------------
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    restart: unless-stopped
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports:
+      - "2181:2181"
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # KAFKA
+  # ------------------------------------------
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+      # For Spring Boot applications running on the host machine.
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # ELASTICSEARCH
+  # ------------------------------------------
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    container_name: elasticsearch
+    restart: unless-stopped
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - backend-network
+
+  # ------------------------------------------
+  # KIBANA
+  # ------------------------------------------
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.4
+    container_name: kibana
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    ports:
+      - "5601:5601"
+    networks:
+      - backend-network
+
+
+# ==========================================
+# DOCKER VOLUMES
+# ==========================================
+volumes:
+  auth-db-data:
+  user-db-data:
+  provider-db-data:
+  catalog-db-data:
+  booking-db-data:
+  payment-db-data:
+  search-db-data:
+  notification-db-data:
+  rating-db-data:
+  media-db-data:
+  elasticsearch-data:
+  minio-data:
+
+
+# ==========================================
+# DOCKER NETWORK
+# ==========================================
+networks:
+  backend-network:
+    driver: bridge
